@@ -2,10 +2,9 @@ const express = require('express');
 const path = require('path');
 const db = require('./db/db');
 
-const { Forms } = require('./models/forms');
-
 const app = express();
 
+app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use('/api/forms', require('./routes/forms'));
 

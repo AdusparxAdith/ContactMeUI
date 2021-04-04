@@ -22,9 +22,13 @@ const FormSchema = new Schema(
       type: String,
       required: 'Please include a message',
       trim: true
+    },
+    date: {
+      type: Date,
+      default: Date.now
     }
   },
-  { collection: 'forms' }
+  { collection: 'forms', versionKey: false }
 );
 
 const Forms = mongoose.model('forms', FormSchema);
