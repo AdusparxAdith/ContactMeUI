@@ -6,7 +6,8 @@
   "scripts": {
     "start": "env-cmd -e PRODUCTION -r env.js node src/server.js",
     "start:dev": "concurrently \"env-cmd -e DEVELOPMENT -r env.js nodemon src/server.js\"  \"npm start --prefix client\" ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "Adith Dinesh",
   "license": "ISC",

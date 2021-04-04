@@ -39,6 +39,7 @@ export default function Form() {
 
     try {
       await axios.post('/api/forms', values);
+      alert('Submitted your response');
     } catch (error) {
       alert(error.message);
     }

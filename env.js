@@ -5,6 +5,7 @@ module.exports = {
   },
   PRODUCTION: {
     PORT: 5000,
-    MONGOURI: ''
+    MONGOURI:
+      'mongodb+srv://adusparx:adusparx@123@clusterlord.gd09l.mongodb.net/formsy?retryWrites=true&w=majority'
   }
 };
