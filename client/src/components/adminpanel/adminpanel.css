@@ -1,0 +1,96 @@
+.admin-panel {
+  padding: 2rem;
+  height: 100vh;
+}
+
+.admin-toolbar {
+  color: black;
+  font-weight: 800;
+  cursor: pointer;
+  margin: 20px 0px;
+}
+
+.admin-content {
+  display: flex;
+}
+
+.admin-messages {
+  width: 800px;
+}
+
+.admin-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 800;
+  font-size: 45px;
+  word-wrap: break-word;
+  padding: 20px;
+}
+
+.admin-toolbar:hover {
+  color: rgb(135 150 199);
+}
+
+.message-body {
+  box-shadow: 0px 2px 15px rgb(0 0 0 / 8%);
+  border-left: 10px solid rgb(135 150 195);
+  padding: 20px;
+  word-wrap: break-word;
+}
+
+/* .message-body > div {
+  padding: 10px 30px;
+} */
+
+.message-container {
+  margin-bottom: 30px;
+  width: 500px;
+}
+
+.message-name {
+  font-weight: 700;
+  color: rgb(87, 87, 87);
+}
+
+.message-content {
+  padding: 10px 0px;
+  text-transform: uppercase;
+}
+
+.message-date {
+  padding: 10px;
+  color: rgb(175, 174, 174);
+}
+
+@media only screen and (max-width: 1201px) {
+  .admin-messages {
+    width: 100%;
+  }
+  .admin-hero {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .message-container {
+    width: 100%;
+  }
+  .admin-hero {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .message-body {
+    width: 100%;
+  }
+  .admin-panel {
+    padding: 0;
+  }
+  .admin-toolbar {
+    padding: 0px 10px;
+  }
+}

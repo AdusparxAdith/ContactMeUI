@@ -74,6 +74,10 @@
   background: #444df7d0;
 }
 
+.contact-layout {
+  width: 100%;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .contact-form {
@@ -81,8 +85,4 @@
     padding-bottom: 0;
     padding-top: 0;
   }
-}
-
-.contact-layout {
-  width: 100%;
 }
