@@ -2,21 +2,32 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Message from './Message';
 import './adminpanel.css';
+import { useNotification } from '../notifications/NotificationProvider';
 
 export default function AdminPanel() {
   const [messages, setMessages] = useState([]);
+  const notify = useNotification();
 
   const getMessages = async () => {
     try {
       const result = await axios.get('/api/forms');
       setMessages(result.data);
     } catch (error) {
-      alert(error.message);
+      notify({
+        type: 'ERROR',
+        message: error.message,
+        title: 'Failed Request'
+      });
     }
   };
 
   const getCSV = async () => {
     try {
+      notify({
+        type: 'SUCCESS',
+        message: 'Fetching your CSV',
+        title: 'Success Request'
+      });
       const result = await axios.get('/api/forms/csv');
       const blob = new Blob([result.data], { type: 'text/csv' });
       const a = document.createElement('a');
@@ -31,7 +42,11 @@ export default function AdminPanel() {
       document.body.appendChild(a);
       a.click();
     } catch (error) {
-      alert(error.message);
+      notify({
+        type: 'ERROR',
+        message: error.message,
+        title: 'Failed Request'
+      });
     }
   };
 

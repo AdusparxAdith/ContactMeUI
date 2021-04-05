@@ -2,8 +2,11 @@ import React from 'react';
 import useForm from '../../hooks/useForm';
 import './form.css';
 import axios from 'axios';
+import { useNotification } from '../notifications/NotificationProvider';
 
 export default function Form() {
+  const notify = useNotification();
+
   const inputs = [
     {
       label: 'full name',
@@ -30,18 +33,36 @@ export default function Form() {
   const handleSubmit = async () => {
     const { email, name, message } = values;
 
-    if (!email || !name || !message) return alert('Please enter all fields');
+    if (!email || !name || !message)
+      return notify({
+        type: 'ERROR',
+        message: 'Please enter all fields',
+        title: 'Failed Request'
+      });
 
     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const isValidEmail = re.test(email);
 
-    if (!isValidEmail) return alert('Please enter a valid email');
+    if (!isValidEmail)
+      return notify({
+        type: 'ERROR',
+        message: 'Please enter a valid email',
+        title: 'Failed Request'
+      });
 
     try {
       await axios.post('/api/forms', values);
-      alert('Submitted your response');
+      notify({
+        type: 'SUCCESS',
+        message: 'Submitted you response!',
+        title: 'Successful Request'
+      });
     } catch (error) {
-      alert(error.message);
+      notify({
+        type: 'ERROR',
+        message: error.message,
+        title: 'Failed Request'
+      });
     }
   };
 
