@@ -14,7 +14,6 @@ const FormSchema = new Schema(
       type: String,
       trim: true,
       lowercase: true,
-      unique: true,
       required: 'Please enter an email address',
       validate: [validateEmail, 'Please enter a valid email address']
     },

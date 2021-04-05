@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import useForm from '../../hooks/useForm';
 import './form.css';
 import axios from 'axios';
@@ -6,6 +6,7 @@ import { useNotification } from '../notifications/NotificationProvider';
 
 export default function Form() {
   const notify = useNotification();
+  const [submitted, setSubmitted] = useState(false);
 
   const inputs = [
     {
@@ -28,7 +29,11 @@ export default function Form() {
     }
   ];
 
-  const [values, handleChange] = useForm({ name: '', email: '', message: '' });
+  const [values, handleChange, clearForm] = useForm({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   const handleSubmit = async () => {
     const { email, name, message } = values;
@@ -57,10 +62,13 @@ export default function Form() {
         message: 'Submitted you response!',
         title: 'Successful Request'
       });
+      setSubmitted(true);
+      clearForm();
     } catch (error) {
+      const { message } = error.response.data;
       notify({
         type: 'ERROR',
-        message: error.message,
+        message: message || error.message,
         title: 'Failed Request'
       });
     }
@@ -102,12 +110,18 @@ export default function Form() {
             </div>
           ))}
 
-          <button
-            className='contact-form-button'
-            onClick={() => handleSubmit()}
-          >
-            send <i className='far fa-paper-plane'></i>
-          </button>
+          {!submitted ? (
+            <button
+              className='contact-form-button'
+              onClick={() => handleSubmit()}
+            >
+              send <i className='far fa-paper-plane'></i>
+            </button>
+          ) : (
+            <b>
+              <em>Thank you! We've recorded your response.</em>
+            </b>
+          )}
         </div>
       </div>
     </div>

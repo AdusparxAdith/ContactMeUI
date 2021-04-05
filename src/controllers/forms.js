@@ -7,7 +7,12 @@ const getForms = async (_, res) => {
 
     res.status(200).send(forms);
   } catch (error) {
-    res.status(500).send({ message: error.message.toUpperCase() });
+    res
+      .status(500)
+      .send({
+        message: 'Something went wrong, please try again',
+        error: error.message
+      });
   }
 };
 
@@ -27,10 +32,10 @@ const saveForm = async (req, res) => {
     if (error.message.includes('validation'))
       return res.status(400).send({ message: error.message.toUpperCase() });
 
-    if (error.message.includes('duplicate'))
-      return res.status(409).send({ message: error.message.toUpperCase() });
-
-    res.status(500).send({ message: error.message.toUpperCase() });
+    res.status(500).send({
+      message: 'Something went wrong, please try again',
+      error: error.message
+    });
   }
 };
 
@@ -63,7 +68,10 @@ const getFormsCSV = async (_, res) => {
 
     res.status(200).send(csv);
   } catch (error) {
-    res.status(500).send({ message: error.message.toUpperCase() });
+    res.status(500).send({
+      message: 'Something went wrong, please try again',
+      error: error.message
+    });
   }
 };
 

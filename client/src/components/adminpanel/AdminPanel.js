@@ -13,9 +13,11 @@ export default function AdminPanel() {
       const result = await axios.get('/api/forms');
       setMessages(result.data);
     } catch (error) {
+      const { message } = error.response.data;
+
       notify({
         type: 'ERROR',
-        message: error.message,
+        message: message || error.message,
         title: 'Failed Request'
       });
     }
@@ -42,9 +44,11 @@ export default function AdminPanel() {
       document.body.appendChild(a);
       a.click();
     } catch (error) {
+      const { message } = error.response.data;
+
       notify({
         type: 'ERROR',
-        message: error.message,
+        message: message || error.message,
         title: 'Failed Request'
       });
     }
