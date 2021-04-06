@@ -76,54 +76,55 @@ export default function Form() {
 
   return (
     <div className='contact-container'>
-      <div className='contact-form'>
-        <div className='contact-layout'>
-          <h2>
-            send us a<br /> message
-          </h2>
-          {inputs.map((input) => (
-            <div key={input.id} className='contact-form-container'>
-              <label className='contact-form-label' htmlFor={input.id}>
-                {input.label}
-              </label>
-              {input.type === 'textarea' ? (
-                <textarea
-                  className='contact-form-input'
-                  type={input.type}
-                  id={input.id}
-                  name={input.id}
-                  placeholder={input.placeholder}
-                  value={values[input.id]}
-                  onChange={handleChange}
-                />
-              ) : (
-                <input
-                  className='contact-form-input'
-                  type={input.type}
-                  id={input.id}
-                  name={input.id}
-                  placeholder={input.placeholder}
-                  value={values[input.id]}
-                  onChange={handleChange}
-                />
-              )}
-            </div>
-          ))}
+      {!submitted ? (
+        <div className='contact-form'>
+          <div className='contact-layout'>
+            <h2>
+              send us a<br /> message
+            </h2>
+            {inputs.map((input) => (
+              <div key={input.id} className='contact-form-container'>
+                <label className='contact-form-label' htmlFor={input.id}>
+                  {input.label}
+                </label>
+                {input.type === 'textarea' ? (
+                  <textarea
+                    className='contact-form-input'
+                    type={input.type}
+                    id={input.id}
+                    name={input.id}
+                    placeholder={input.placeholder}
+                    value={values[input.id]}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  <input
+                    className='contact-form-input'
+                    type={input.type}
+                    id={input.id}
+                    name={input.id}
+                    placeholder={input.placeholder}
+                    value={values[input.id]}
+                    onChange={handleChange}
+                  />
+                )}
+              </div>
+            ))}
 
-          {!submitted ? (
             <button
               className='contact-form-button'
               onClick={() => handleSubmit()}
             >
               send <i className='far fa-paper-plane'></i>
             </button>
-          ) : (
-            <b>
-              <em>Thank you! We've recorded your response.</em>
-            </b>
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className='form-hero'>
+          Thanks,
+          <br /> We've recorded your response.
+        </div>
+      )}
     </div>
   );
 }

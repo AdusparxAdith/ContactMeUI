@@ -78,6 +78,13 @@
   width: 100%;
 }
 
+.form-hero {
+  font-weight: 800;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: rgb(82, 82, 82);
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .contact-form {
